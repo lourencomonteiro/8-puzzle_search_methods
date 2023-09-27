@@ -21,14 +21,15 @@ class Node:
 
 initialState = [[1, 2, 3], [4, "-", 5], [6, 7, 8]]
 root = Node(initialState)
-# root.state.printBoard()
+print("original")
+root.state.printBoard()
 root.generateChildren()
 
 
 
-# for child in root.children:
-#     print("Board: ")
-#     child.printBoard()
+for child in root.children:
+    print("Board: ")
+    child.printBoard()
 
 
 

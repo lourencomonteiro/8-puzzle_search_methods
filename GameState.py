@@ -20,55 +20,39 @@ class GameState:
 
   def movePieceUp(self):
     emptyPosition = self.getEmptyPosition()
-    newBoard = GameState(self.board.copy())
+    newBoard = GameState(copy.deepcopy(self.board))
     if(emptyPosition[1] == 2):
         return None
     movedPiece = self.board[emptyPosition[0] +1][emptyPosition[1]]
     newBoard.board[emptyPosition[0]][emptyPosition[1]] = movedPiece
     newBoard.board[emptyPosition[0] + 1][emptyPosition[1]] = "-"
-    print("OLD")
-    self.printBoard()
-    print("NEW")
-    newBoard.printBoard()
     return newBoard
   
   def movePieceDown(self):
     emptyPosition = self.getEmptyPosition().copy()
-    newBoard = GameState(self.board.copy())
+    newBoard = GameState(copy.deepcopy(self.board))
     if(emptyPosition[0] == 0):
         return None
     newBoard.board[emptyPosition[0]][emptyPosition[1]] = self.board[emptyPosition[0] -1][emptyPosition[1]]
     newBoard.board[emptyPosition[0] -1][emptyPosition[1]] = "-"
-    print("OLD")
-    self.printBoard()
-    print("NEW")
-    newBoard.printBoard()
     return newBoard
   
   def movePieceLeft(self):
     emptyPosition = self.getEmptyPosition()
-    newBoard = GameState(self.board.copy())
+    newBoard = GameState(copy.deepcopy(self.board))
     if(emptyPosition[1] == 2):
         return None
     newBoard.board[emptyPosition[0]][emptyPosition[1]] = self.board[emptyPosition[0]][emptyPosition[1] +1]
     newBoard.board[emptyPosition[0]][emptyPosition[1] +1] = "-"
-    print("OLD")
-    self.printBoard()
-    print("NEW")
-    newBoard.printBoard()
     return newBoard
        
   def movePieceRight(self):
     emptyPosition = self.getEmptyPosition()
-    newBoard = GameState(self.board.copy())
+    newBoard = GameState(copy.deepcopy(self.board))
     if(emptyPosition[1] == 0):
         return None
     newBoard.board[emptyPosition[0]][emptyPosition[1]] = self.board[emptyPosition[0]][emptyPosition[1] -1]
     newBoard.board[emptyPosition[0]][emptyPosition[1] -1] = "-"
-    print("OLD")
-    self.printBoard()
-    print("NEW")
-    newBoard.printBoard()
     return newBoard
 
   def isSolution(self):
