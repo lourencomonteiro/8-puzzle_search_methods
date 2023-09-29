@@ -7,6 +7,9 @@ class GameState:
   def __init__(self, board):
     self.board = board      
 
+  # def __getitem__(self):
+  #   return self.board
+  
   def printBoard(self):
     for i in range(3):
       print("{} {} {}".format(self.board[i][0], self.board[i][1], self.board[i][2]))
@@ -25,7 +28,7 @@ class GameState:
         return None
     movedPiece = self.board[emptyPosition[0] +1][emptyPosition[1]]
     newBoard.board[emptyPosition[0]][emptyPosition[1]] = movedPiece
-    newBoard.board[emptyPosition[0] + 1][emptyPosition[1]] = "-"
+    newBoard.board[emptyPosition[0] + 1][emptyPosition[1]] = "-"  
     return newBoard
   
   def movePieceDown(self):
@@ -62,7 +65,7 @@ class GameState:
       secondPiece = self.board[(nextIndex)//3][(nextIndex)%3]
       if(secondPiece == "-"): secondPiece = self.board[(nextIndex+1)//3][(nextIndex+1)%3]
       if(type(firstPiece) == int and type(secondPiece) == int and firstPiece > secondPiece):
-          return False
+        return False
     return True     
 
 
