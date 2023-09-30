@@ -1,9 +1,11 @@
 import copy
+import queue
   
 class Node:
-    def __init__(self, board):
+    def __init__(self, board, level):
         self.board = board
         self.children = []
+        self.level = level,
     
     def printBoard(self):
         for i in range(3):
@@ -18,7 +20,7 @@ class Node:
 
     def movePieceUp(self):
         emptyPosition = self.getEmptyPosition()
-        newBoard = Node(copy.deepcopy(self.board))
+        newBoard = Node(copy.deepcopy(self.board), self.level[0]+1)
         if(emptyPosition[0] == 2):
             return None
         movedPiece = self.board[emptyPosition[0] +1][emptyPosition[1]]
@@ -28,7 +30,7 @@ class Node:
     
     def movePieceDown(self):
         emptyPosition = self.getEmptyPosition().copy()
-        newBoard = Node(copy.deepcopy(self.board))
+        newBoard = Node(copy.deepcopy(self.board), self.level[0]+1)
         if(emptyPosition[0] == 0):
             return None
         newBoard.board[emptyPosition[0]][emptyPosition[1]] = self.board[emptyPosition[0] -1][emptyPosition[1]]
@@ -37,7 +39,7 @@ class Node:
     
     def movePieceLeft(self):
         emptyPosition = self.getEmptyPosition()
-        newBoard = Node(copy.deepcopy(self.board))
+        newBoard = Node(copy.deepcopy(self.board), self.level[0]+1)
         if(emptyPosition[1] == 2):
             return None
         newBoard.board[emptyPosition[0]][emptyPosition[1]] = self.board[emptyPosition[0]][emptyPosition[1] +1]
@@ -46,7 +48,7 @@ class Node:
         
     def movePieceRight(self):
         emptyPosition = self.getEmptyPosition()
-        newBoard = Node(copy.deepcopy(self.board))
+        newBoard = Node(copy.deepcopy(self.board), self.level[0]+1)
         if(emptyPosition[1] == 0):
             return None
         newBoard.board[emptyPosition[0]][emptyPosition[1]] = self.board[emptyPosition[0]][emptyPosition[1] -1]
@@ -54,14 +56,10 @@ class Node:
         return newBoard
 
     def isSolution(self):
-        for i in range(8):
-            nextIndex = i+1
-            firstPiece = self.board[i//3][i%3]
-            secondPiece = self.board[(nextIndex)//3][(nextIndex)%3]
-            if(secondPiece == "-" and self.getEmptyPosition() != [2, 2]): secondPiece = self.board[(nextIndex+1)//3][(nextIndex+1)%3]
-            if(type(firstPiece) == int and type(secondPiece) == int and firstPiece > secondPiece):
-                return False
-        return True     
+        solution = [[1, 2, 3], [4, 5, 6], [7, 8, "-"]]
+        if self.board == solution:
+            return True
+        return False     
 
     def generateChildren(self):
 
@@ -78,26 +76,60 @@ class Node:
 
 def bfs(root):
     notVisited = [root]
-    solutionFound = False
-    solutionDepth = 0
-    while not solutionFound:
+    solutionLevel = -1
+    while solutionLevel == -1:
         for node in notVisited:
             if node.isSolution():
-                solutionFound = True
+                solutionLevel = node.level
                 break
 
-        aux = copy.deepcopy(notVisited)
-        for node in aux:
+        aux = []
+        for node in notVisited:
             node.generateChildren()
             for child in node.children:
-                notVisited.append(child)
-            notVisited.pop(0)
-        
-        solutionDepth +=1
-    return solutionDepth
+                aux.append(child)
+        notVisited.clear()
+        notVisited = aux.copy()
+    return solutionLevel[0]
+
+def dijkstra(root):
+    priorityQueue = queue.Queue()
+    priorityQueue.put(root)
+    visited = []
+    solutionLevel = -1
+    while solutionLevel == -1:
+        if(priorityQueue.empty()):
+            return -1
+        #seleciona o primeiro item da pilha e remove ele
+        node = priorityQueue.get() 
+        if node.isSolution():
+            solutionLevel = node.level
+        else: 
+            visited.append(node)
+            node.generateChildren()
+            for child in node.children:
+                if(child not in visited): priorityQueue.put(child)
+    
+    return solutionLevel[0]
+
+def ids(raiz):
+    depthLimit = 0
+    while (1):  # Loop até encontrar o objetivo ou explorar toda a árvore
+        solutionDepth = dfs(root, depthLimit)
+        if(solutionDepth):
+            return solutionDepth
+        depthLimit = depthLimit + 1
+
+def dfs(root, depthLimit):
+    stack = queue.LifoQueue()
 
 
 
-initialState = [[1, 5, 2], ["-", 4, 3], [7, 8, 6]]
-root = Node(initialState)
+    
+
+
+
+initialState = [[1, "-", 3], [4, 2, 5], [7, 8, 6]]
+root = Node(initialState, 0)
 print(bfs(root))
+print(dijkstra(root))

@@ -1,13 +1,11 @@
-class Amigo:
-    def __init__(self, nome):
-        self.nome = [nome, nome, nome]
-
-a = Amigo("Carlos")
-b = Amigo("Felipe")
-c = Amigo("Ramon")
 
 
-arr = [a, b, c]
 
-for i in arr:
-    print(i.nome)
+carne = [[1, 2, 3], [4, 5, 6], [7, 8, "-"]]
+
+ovo = [[1, 2, 3], [4, 5, 6], [7, 8, "-"]]
+
+if(carne == ovo):
+    print("sao iguais")
+else:
+    print("sao diferentes")
