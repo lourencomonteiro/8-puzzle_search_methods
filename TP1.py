@@ -1,5 +1,6 @@
 import Tree
 import sys
+import time
 
 
 def getRootAndAlgorithm():
@@ -19,22 +20,47 @@ def getRootAndAlgorithm():
 
 root, algorithm = getRootAndAlgorithm()
 
+solution = None
+
 if(algorithm == "B"):
+    inicio = time.time()
     solution = Tree.bfs(root)
-    print(solution[0])
+    fim = time.time()
+    print(fim - inicio)
+    print(solution.level[0])
 elif(algorithm == "I"):
-    print(Tree.iterativeDeepening(root))
+    inicio = time.time()
+    solution = Tree.ids(root)
+    fim = time.time()
+    print(fim - inicio)
+    print(solution.level[0])
 elif(algorithm == "U"):
-    print(Tree.uniformCostSearch(root))
+    inicio = time.time()
+    solution = Tree.dijkstra(root)
+    fim = time.time()
+    print(fim - inicio)
+    print(solution.level[0])
 elif(algorithm == "A"):
-    print(Tree.aStar(root))
+    inicio = time.time()
+    solution = Tree.AStar(root)
+    fim = time.time()
+    print(fim - inicio)
+    print(solution.level[0])
 elif(algorithm == "G"):
-    print(Tree.greedyBestFirstSearch(root))
+    inicio = time.time()
+    solution = Tree.greedyBestFirstSearch(root)
+    fim = time.time()
+    print(fim - inicio)
+    print(solution.level[0])
 elif(algorithm == "H"):
-    print(Tree.hillClimbing(root))
+    inicio = time.time()
+    solution = Tree.hillClimbing(root)
+    fim = time.time()
+    print(fim - inicio)
+    print(solution.level[0])
 else:
     raise ValueError("Algoritmo escolhido inválido")
   
 if(sys.argv[11] == "PRINT"):
     print("")
-    solution[1].printPath()
+    solution.printPath()

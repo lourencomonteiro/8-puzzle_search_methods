@@ -88,12 +88,10 @@ class Node:
 
 def bfs(root):
     notVisited = [root]
-    solutionLevel = -1
     solutionNode = None
-    while solutionLevel == -1:
+    while solutionNode == None:
         for node in notVisited:
             if node.isSolution():
-                solutionLevel = node.level
                 solutionNode = node
                 break
 
@@ -104,18 +102,18 @@ def bfs(root):
                 aux.append(child)
         notVisited.clear()
         notVisited = aux.copy()
-    return solutionLevel[0], solutionNode
+    return solutionNode
 
 def dijkstra(root):
     priorityQueue = queue.Queue()
     priorityQueue.put(root)
     visited = []
-    solutionLevel = -1
+    solutionNode = None
     while priorityQueue.empty() == False:
         #seleciona o primeiro item da pilha e remove ele
         node = priorityQueue.get()
         if node.isSolution():
-            solutionLevel = node.level
+            solutionNode = node
             break
         else:
             visited.append(node)
@@ -123,33 +121,33 @@ def dijkstra(root):
             for child in node.children:
                 if(child not in visited): priorityQueue.put(child)
     
-    if(solutionLevel == -1):
+    if(solutionNode == None):
         return False
-    return solutionLevel[0]
+    return solutionNode
 
 def ids(root):
     depthLimit = 0
     while (1):  # Loop até encontrar o objetivo ou explorar toda a árvore
-        solutionDepth = dfs(root, depthLimit)
-        if(solutionDepth):
-            return solutionDepth
+        solution = dfs(root, depthLimit)
+        if(solution != False):
+            return solution
         depthLimit = depthLimit + 1
 
 def dfs(root, depthLimit):
     notVisitedStack = queue.LifoQueue()
     notVisitedStack.put(root)
-    solutionDepth = -1
+    solutionNode = None
     while notVisitedStack.empty() == False:
         node = notVisitedStack.get()
         if node.isSolution():
-            solutionDepth = node.level[0]
+            solutionNode = node
             break
         if node.level[0] < depthLimit:
             node.generateChildren()
             for child in node.children:
                 notVisitedStack.put(child)
-    if(solutionDepth != -1):
-        return solutionDepth
+    if(solutionNode != None):
+        return solutionNode
     return False
 
 def numberOfPiecesInWrongPlace(node):
@@ -164,12 +162,12 @@ def numberOfPiecesInWrongPlace(node):
 def AStar(root):
     priorityQueue = [root]
     visited = []
-    solutionLevel = -1
+    solutionNode = None
     while len(priorityQueue) != 0:
         #seleciona o primeiro item da pilha e remove ele
         node = priorityQueue[0]
         if node.isSolution():
-            solutionLevel = node.level[0]
+            solutionNode = node
             break
         else: 
             visited.append(node)
@@ -181,9 +179,9 @@ def AStar(root):
                     priorityQueue.append(child)
         priorityQueue.sort(key=lambda x: x.cost)
     
-    if(solutionLevel == -1):
+    if(solutionNode == None):
         return False
-    return solutionLevel
+    return solutionNode
 
 def manhattanDistance(node):
     solution = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
@@ -200,11 +198,11 @@ def manhattanDistance(node):
 def greedyBestFirstSearch(root):
     priorityQueue = [root]
     visited = []
-    solutionLevel = -1
+    solutionNode = None
     while len(priorityQueue) != 0:
         node = priorityQueue[0]
         if node.isSolution():
-            solutionLevel = node.level[0]
+            solutionNode = node
             break
         else: 
             visited.append(node)
@@ -216,9 +214,9 @@ def greedyBestFirstSearch(root):
                     priorityQueue.append(child)
         priorityQueue.sort(key=lambda x: x.cost)
     
-    if(solutionLevel == -1):
+    if(solutionNode == None):
         return False
-    return solutionLevel
+    return solutionNode
 
 # def hillClimbing(root):
 #     while(True):

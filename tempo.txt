@@ -1,0 +1,7 @@
+ALGORITHM               10
+bfs                     3.007
+ids                     
+uniformCostSearch       41.684
+AStar                   
+greedyBestFirstSearch   
+hillClimbing            
