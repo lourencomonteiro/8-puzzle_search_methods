@@ -2,21 +2,29 @@ import copy
 import queue
   
 class Node:
-    def __init__(self, board, level):
+    def __init__(self, board, level = 0, parent = None):
         self.board = board
         self.children = []
         self.level = level,
         self.cost = 0
+        self.parent = parent
     
     def printBoard(self):
         for i in range(3):
             print("{} {} {}".format(self.board[i][0], self.board[i][1], self.board[i][2]))
 
+    def printPath(self):
+        if(self.parent != None):
+            self.parent.printPath()
+        self.printBoard()
+        print("")
+
     def getEmptyPosition(self):
         for i, sublist in enumerate(self.board):
-            if "-" in sublist:
-                j = sublist.index("-")
+            if 0 in sublist:
+                j = sublist.index(0)
                 emptyPosition = [i, j]
+                break
         return emptyPosition
 
     def setCost(self, cost):
@@ -24,43 +32,43 @@ class Node:
     
     def movePieceUp(self):
         emptyPosition = self.getEmptyPosition()
-        newBoard = Node(copy.deepcopy(self.board), self.level[0]+1)
+        newBoard = Node(copy.deepcopy(self.board), self.level[0]+1, self)
         if(emptyPosition[0] == 2):
             return None
         movedPiece = self.board[emptyPosition[0] +1][emptyPosition[1]]
         newBoard.board[emptyPosition[0]][emptyPosition[1]] = movedPiece
-        newBoard.board[emptyPosition[0] + 1][emptyPosition[1]] = "-"
+        newBoard.board[emptyPosition[0] + 1][emptyPosition[1]] = 0
         return newBoard
     
     def movePieceDown(self):
         emptyPosition = self.getEmptyPosition().copy()
-        newBoard = Node(copy.deepcopy(self.board), self.level[0]+1)
+        newBoard = Node(copy.deepcopy(self.board), self.level[0]+1, self)
         if(emptyPosition[0] == 0):
             return None
         newBoard.board[emptyPosition[0]][emptyPosition[1]] = self.board[emptyPosition[0] -1][emptyPosition[1]]
-        newBoard.board[emptyPosition[0] -1][emptyPosition[1]] = "-"
+        newBoard.board[emptyPosition[0] -1][emptyPosition[1]] = 0
         return newBoard
     
     def movePieceLeft(self):
         emptyPosition = self.getEmptyPosition()
-        newBoard = Node(copy.deepcopy(self.board), self.level[0]+1)
+        newBoard = Node(copy.deepcopy(self.board), self.level[0]+1, self)
         if(emptyPosition[1] == 2):
             return None
         newBoard.board[emptyPosition[0]][emptyPosition[1]] = self.board[emptyPosition[0]][emptyPosition[1] +1]
-        newBoard.board[emptyPosition[0]][emptyPosition[1] +1] = "-"
+        newBoard.board[emptyPosition[0]][emptyPosition[1] +1] = 0
         return newBoard
         
     def movePieceRight(self):
         emptyPosition = self.getEmptyPosition()
-        newBoard = Node(copy.deepcopy(self.board), self.level[0]+1)
+        newBoard = Node(copy.deepcopy(self.board), self.level[0]+1, self)
         if(emptyPosition[1] == 0):
             return None
         newBoard.board[emptyPosition[0]][emptyPosition[1]] = self.board[emptyPosition[0]][emptyPosition[1] -1]
-        newBoard.board[emptyPosition[0]][emptyPosition[1] -1] = "-"
+        newBoard.board[emptyPosition[0]][emptyPosition[1] -1] = 0
         return newBoard
 
     def isSolution(self):
-        solution = [[1, 2, 3], [4, 5, 6], [7, 8, "-"]]
+        solution = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
         if self.board == solution:
             return True
         return False     
@@ -81,10 +89,12 @@ class Node:
 def bfs(root):
     notVisited = [root]
     solutionLevel = -1
+    solutionNode = None
     while solutionLevel == -1:
         for node in notVisited:
             if node.isSolution():
                 solutionLevel = node.level
+                solutionNode = node
                 break
 
         aux = []
@@ -94,7 +104,7 @@ def bfs(root):
                 aux.append(child)
         notVisited.clear()
         notVisited = aux.copy()
-    return solutionLevel[0]
+    return solutionLevel[0], solutionNode
 
 def dijkstra(root):
     priorityQueue = queue.Queue()
@@ -143,7 +153,7 @@ def dfs(root, depthLimit):
     return False
 
 def numberOfPiecesInWrongPlace(node):
-    solution = [[1, 2, 3], [4, 5, 6], [7, 8, "-"]]
+    solution = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
     wrongPlace = 0
     for i in range(3):
         for j in range(3):
@@ -176,7 +186,7 @@ def AStar(root):
     return solutionLevel
 
 def manhattanDistance(node):
-    solution = [[1, 2, 3], [4, 5, 6], [7, 8, "-"]]
+    solution = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
     distance = 0
     for i in range(3):
         for j in range(3):
@@ -214,10 +224,10 @@ def greedyBestFirstSearch(root):
 #     while(True):
 
 
-initialState = [[1, 5, 2], [4, 8, 3], [7, 6, "-"]]
-root = Node(initialState, 0)
-print(bfs(root))
-print(dijkstra(root))
-print(ids(root))
-print(AStar(root))
-print(greedyBestFirstSearch(root))
+# initialState = [[1, 5, 2], [4, 8, 3], [7, 6, 0]]
+# root = Node(initialState, 0)
+# print(bfs(root))
+# print(dijkstra(root))
+# print(ids(root))
+# print(AStar(root))
+# print(greedyBestFirstSearch(root))
