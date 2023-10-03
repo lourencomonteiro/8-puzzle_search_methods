@@ -232,25 +232,40 @@ def hillClimbing(root):
             return currentNode
         elif(bestNeighbour.cost == currentNode.cost):
             k -= 1
+        elif(bestNeighbour.cost < currentNode.cost):
+            k = 5
+
         if(k == 0):
             return currentNode
         currentNode = bestNeighbour
 
 
-# import time
+import time
 
-# teste0 = [[2, 1, 3], [4, 5, 6], [7, 8, 0]] # solução = 1
+teste1 = [[1, 5, 2], [0, 4, 3], [7, 8, 6]] # solução = 5
+teste2 = [[0, 5, 2], [1, 8, 3], [4, 7, 6]] # solução = 8
+teste3 = [[5, 8, 2], [1, 7, 3], [4, 0, 6]] # solução = 11
+teste4 = [[5, 8, 2], [7, 0, 3], [1, 4, 6]] # solução = 14
+teste5 = [[5, 0, 8], [7, 3, 2], [1, 4, 6]] # solução = 17
+teste6 = [[8, 7, 0], [5, 4, 2], [1, 6, 3]] # solução = 20
+teste7 = [[8, 4, 7], [5, 6, 2], [1, 0, 3]] # solução = 23
+testes = [teste1, teste2, teste3, teste4, teste5, teste6, teste7]
 
-# teste1 = [[1, 5, 2], [0, 4, 3], [7, 8, 6]] # solução = 5
-# teste2 = [[5, 8, 2], [1, 0, 3], [4, 7, 6]] # solução = 10
-# teste3 = [[8, 7, 0], [5, 4, 2], [1, 6, 3]] # solução = 20
+algorithms = [bfs, hillClimbing, AStar, dijkstra, greedyBestFirstSearch, ids]
 
-# testes = [teste0, teste1, teste2, teste3]
-
-# cont = 1
-# for i in testes:
-#     print("------------------------------")
-#     print("")
-#     print("Teste {}".format(cont))
-#     cont += 1
-#     root = Node(i)
+numTeste = [5, 8, 11, 14, 17, 20, 23]
+for algorithm in algorithms:
+    print("Algoritmo {}".format(algorithm.__name__))
+    cont = 0
+    print("")
+    for j in testes:
+        root = Node(j)
+        print("Teste {}".format(numTeste[cont]))
+        cont += 1
+        startTime = time.time()
+        print(algorithm(root).level[0])
+        endTime = time.time()
+        print("Tempo de execução: {}".format(endTime - startTime))
+        print("")
+    print("---------------------------")
+    print("")

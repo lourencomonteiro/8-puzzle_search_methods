@@ -1,5 +1,5 @@
-{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1046\deflangfe1046{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fswiss\fprq2\fcharset0 Calibri;}{\f2\fnil\fcharset2 Symbol;}}
-{\*\generator Riched20 10.0.22621}{\*\mmathPr\mnaryLim0\mdispDef1\mwrapIndent1440 }\viewkind4\uc1 
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1046\deflangfe1046{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fswiss\fprq2\fcharset161 Arial;}{\f2\fswiss\fprq2\fcharset0 Calibri;}{\f3\fnil\fcharset2 Symbol;}}
+{\*\generator Riched20 10.0.22621}{\*\mmathPr\mdispDef1\mwrapIndent1440 }\viewkind4\uc1 
 \pard\keep\keepn\nowidctlpar\sb240\sl259\slmult0\qc\b\f0\fs48\lang22 Trabalho Pr\'e1tico 1 \line 8-Puzzle\par
 
 \pard\nowidctlpar\sa160\sl259\slmult0\qc\fs32 Introdu\'e7\'e3o \'e0 Intelig\'eancia Artificial\ul\par
@@ -14,24 +14,24 @@ Belo Horizonte \endash  MG \endash  Brasil\fs20\par
 
 \pard\nowidctlpar\sa160\sl259\slmult0\b0\fs24 Com o objetivo de representar cada n\'f3 das \'e1rvores de busca dos algoritmos, a classe \lquote Node\rquote  foi criada e possui os atributos: board, children, level, cost.\par
 
-\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\nowidctlpar\fi-360\li720\sa160\sl259\slmult0 Board: esse atributo \'e9 a representa\'e7\'e3o do tabuleiro do 8-puzzle, uma matriz 3x3 (lista de listas)\par
-{\pntext\f2\'B7\tab}Children: \'e9 a lista de n\'f3s filhos daquele n\'f3, possuem o tipo Node\par
-{\pntext\f2\'B7\tab}Level: representa o n\'edvel da \'e1rvore ou o n\'famero de jogadas que foram necess\'e1rias para chegar naquele n\'f3/estado do tabuleiro\par
-{\pntext\f2\'B7\tab}Cost: para os algoritmos que utilizam esse par\'e2metro ele \'e9 inicializado como 0 e a fun\'e7\'e3o setCost(self, cost) define o custo associado \'e0quele n\'f3 no algoritmo\par
-{\pntext\f2\'B7\tab}Parent: tem valor padr\'e3o como None, aponta para o n\'f3 pai daquele n\'f3\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\fi-360\li720\sa160\sl259\slmult0 Board: esse atributo \'e9 a representa\'e7\'e3o do tabuleiro do 8-puzzle, uma matriz 3x3 (lista de listas)\par
+{\pntext\f3\'B7\tab}Children: \'e9 a lista de n\'f3s filhos daquele n\'f3, possuem o tipo Node\par
+{\pntext\f3\'B7\tab}Level: representa o n\'edvel da \'e1rvore ou o n\'famero de jogadas que foram necess\'e1rias para chegar naquele n\'f3/estado do tabuleiro\par
+{\pntext\f3\'B7\tab}Cost: para os algoritmos que utilizam esse par\'e2metro ele \'e9 inicializado como 0 e a fun\'e7\'e3o setCost(self, cost) define o custo associado \'e0quele n\'f3 no algoritmo\par
+{\pntext\f3\'B7\tab}Parent: tem valor padr\'e3o como None, aponta para o n\'f3 pai daquele n\'f3\par
 
 \pard\nowidctlpar\sa160\sl259\slmult0 Para auxiliar na execu\'e7\'e3o dos algoritmos de busca, no arquivo "Tree.py" os m\'e9todos da classe Node a seguir foram criados:\par
 
-\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\nowidctlpar\fi-360\li720\sa160\sl259\slmult0 printBoard(self): Imprime o tabuleiro do n\'f3\par
-{\pntext\f2\'B7\tab}printPath(self): Imprime o caminho desde o n\'f3 inicial\par
-{\pntext\f2\'B7\tab}setCost(self, cost): Define o custo atrelado \'e0quele n\'f3 (se o algoritmo utilizado tiver um custo relacionado)\par
-{\pntext\f2\'B7\tab}getEmptyPosition(self): Retorna a posi\'e7\'e3o do quadrado vazio\par
-{\pntext\f2\'B7\tab}movePieceUp: Retorna um novo objeto Node com uma altera\'e7\'e3o no tabuleiro, em que a pe\'e7a que est\'e1 abaixo do espa\'e7o vazio \'e9 trocada com a pe\'e7a de espa\'e7o vazio\par
-{\pntext\f2\'B7\tab}movePieceDown: Retorna um novo objeto Node com uma altera\'e7\'e3o no tabuleiro, em que a pe\'e7a que est\'e1 acima do espa\'e7o vazio \'e9 trocada com a pe\'e7a de espa\'e7o vazio\par
-{\pntext\f2\'B7\tab}movePieceLeft: Retorna um novo objeto Node com uma altera\'e7\'e3o no tabuleiro, em que a pe\'e7a que est\'e1 a direita do espa\'e7o vazio \'e9 trocada com a pe\'e7a de espa\'e7o vazio\par
-{\pntext\f2\'B7\tab}movePieceRight: Retorna um novo objeto Node com uma altera\'e7\'e3o no tabuleiro, em que a pe\'e7a que est\'e1 a esquerda do espa\'e7o vazio \'e9 trocada com a pe\'e7a de espa\'e7o vazio\par
-{\pntext\f2\'B7\tab}isSolution(self): verifica se o estado do n\'f3 \'e9 solu\'e7\'e3o do problema\par
-{\pntext\f2\'B7\tab}generateChildren(self): gera as poss\'edveis pr\'f3ximas jogadas a partir do tabuleiro do n\'f3 e as adiciona \'e0 lista children.\b\fs32\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\fi-360\li720\sa160\sl259\slmult0 printBoard(self): Imprime o tabuleiro do n\'f3\par
+{\pntext\f3\'B7\tab}printPath(self): Imprime o caminho desde o n\'f3 inicial\par
+{\pntext\f3\'B7\tab}setCost(self, cost): Define o custo atrelado \'e0quele n\'f3 (se o algoritmo utilizado tiver um custo relacionado)\par
+{\pntext\f3\'B7\tab}getEmptyPosition(self): Retorna a posi\'e7\'e3o do quadrado vazio\par
+{\pntext\f3\'B7\tab}movePieceUp: Retorna um novo objeto Node com uma altera\'e7\'e3o no tabuleiro, em que a pe\'e7a que est\'e1 abaixo do espa\'e7o vazio \'e9 trocada com a pe\'e7a de espa\'e7o vazio\par
+{\pntext\f3\'B7\tab}movePieceDown: Retorna um novo objeto Node com uma altera\'e7\'e3o no tabuleiro, em que a pe\'e7a que est\'e1 acima do espa\'e7o vazio \'e9 trocada com a pe\'e7a de espa\'e7o vazio\par
+{\pntext\f3\'B7\tab}movePieceLeft: Retorna um novo objeto Node com uma altera\'e7\'e3o no tabuleiro, em que a pe\'e7a que est\'e1 a direita do espa\'e7o vazio \'e9 trocada com a pe\'e7a de espa\'e7o vazio\par
+{\pntext\f3\'B7\tab}movePieceRight: Retorna um novo objeto Node com uma altera\'e7\'e3o no tabuleiro, em que a pe\'e7a que est\'e1 a esquerda do espa\'e7o vazio \'e9 trocada com a pe\'e7a de espa\'e7o vazio\par
+{\pntext\f3\'B7\tab}isSolution(self): verifica se o estado do n\'f3 \'e9 solu\'e7\'e3o do problema\par
+{\pntext\f3\'B7\tab}generateChildren(self): gera as poss\'edveis pr\'f3ximas jogadas a partir do tabuleiro do n\'f3 e as adiciona \'e0 lista children.\b\fs32\par
 
 \pard\nowidctlpar\li360\sa160\sl259\slmult0\b0\fs24  \b\fs32\par
 
@@ -56,28 +56,26 @@ h(n) \'e9 a fun\'e7\'e3o da heur\'edstica e i(n) a fun\'e7\'e3o do uniform-cost 
 No algoritmo de busca gulosa, diferente do A* apenas a fun\'e7\'e3o heur\'edstica \'e9 utilizada para ordenar a fila de n\'f3s n\'e3o visitados, fora isso, o algoritmo funciona da mesma forma que o A*.\par
 A heur\'edstica utilizada \'e9 a de dist\'e2ncia Manhattan, para cada pe\'e7a do tabuleiro, a dist\'e2ncia Manhattan entre a posi\'e7\'e3o atual e a posi\'e7\'e3o da solu\'e7\'e3o \'e9 calculada. Quanto maior a dist\'e2ncia total, menor prioridade o movimento ter\'e1 para ser explorado.\par
 \b\fs32 Hill Climbing\b0\fs24\par
-No m\'e9todo Hill Climbing\par
-\par
+No m\'e9todo Hill Climbing, utilizei a heur\'edstica de dist\'e2ncia Manhattan para calcular o custo de cada movimento. Ap\'f3s selecionar o n\'f3 raiz como n\'f3 inicial, em um loop verifico se o vizinho (filho) de menor custo do n\'f3 atual tem custo maior que o n\'f3 original, se sim o n\'f3 original \'e9 retornado. Caso contr\'e1rio, o n\'f3 de menor custo \'e9 selecionado como n\'f3 atual e o loop se repete. Para permitir movimentos laterais, utilizo a compara\'e7\'e3o entre o n\'f3 corrente e seu filho de menor custo com o operador maior que, caso os custos forem iguais, uma vari\'e1vel "k" foi definida no inicio do m\'e9todo, afim de limitar o n\'famero de movimentos laterais em at\'e9 5. Se houver mais de 5 movimentos laterais consecutivos, o n\'f3 corrente \'e9 retornado.\par
 \par
 \b\fs32 3. An\'e1lise das heur\'edsticas\par
 \b0\fs24 Para analisar as heur\'edsticas, \'e9 necess\'e1rio definir que, uma heur\'edstica admiss\'edvel \'e9 uma heur\'edstica que nunca superestima o custo da solu\'e7\'e3o \'f3tima, ou seja, nunca retorna um valor maior do que o custo real da solu\'e7\'e3o \'f3tima a partir desse estado.\par
 
-\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\nowidctlpar\fi-360\li720\sa160\sl259\slmult0\fs28 N\'famero de pe\'e7as fora de posi\'e7\'e3o da solu\'e7\'e3o\fs24\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\fi-360\li720\sa160\sl259\slmult0\fs28 N\'famero de pe\'e7as fora de posi\'e7\'e3o da solu\'e7\'e3o\fs24\par
 
 \pard\nowidctlpar\sa160\sl259\slmult0 Essa heur\'edstica pode ser classificada como admiss\'edvel, pois no valor m\'e1ximo da fun\'e7\'e3o heur\'edstica (custo = 8), mostra que cada pe\'e7a dever\'e1 ser movida pelo menos 1 posi\'e7\'e3o, o que \'e9 verdade caso todas as pe\'e7as estejam na posi\'e7\'e3o errada\par
 
-\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\nowidctlpar\fi-360\li720\sa160\sl259\slmult0\fs28 Dist\'e2ncia Manhattan\fs24\par
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent0{\pntxtb\'B7}}\nowidctlpar\fi-360\li720\sa160\sl259\slmult0\fs28 Dist\'e2ncia Manhattan\fs24\par
 
 \pard\nowidctlpar\sa160\sl259\slmult0 A heur\'edstica de Manhattan, tamb\'e9m pode ser considerada como admiss\'edvel, porque cada a\'e7\'e3o movimenta cada pe\'e7a apenas um passo mais perto do objetivo. Essa heur\'edstica retorna um valor menor ou igual \'e0 dist\'e2ncia real entre o estado atual e o estado objetivo, isso ocorre pois ela s\'f3 consider movimentos horizontais e verticais.\par
-
-\pard\nowidctlpar\sa160\sl259\slmult0\par
-
-\pard\nowidctlpar\sa160\sl259\slmult0\par
-\b\fs32 4. Testes \par
-5. Conclus\'e3o\par
 \par
-\b0\fs24 O trabalho pr\'e1tico foi muito importante para colocar em pr\'e1tica os conhecimentos adquiridos na disciplina de Programa\'e7\'e3o de Computadores, durante o semestre. No momento da implementa\'e7\'e3o de um projeto, \'e9 poss\'edvel lidar com problemas reais relatados durante as aulas, como documenta\'e7\'e3o de c\'f3digo, problemas de l\'f3gica e de tradu\'e7\'e3o das ideias em um c\'f3digo limpo e organizado, al\'e9m de entender melhor como a linguagem Python funciona e como podemos utiliz\'e1-la para automatizar processos, como o de resolu\'e7\'e3o de sistemas de equa\'e7\'f5es triangulares.\b\fs32\par
+\b\fs32 4. Resultados\par
+\par
+5. Conclus\'e3o\par
 
-\pard\nowidctlpar\sa200\sl276\slmult1\b0\f1\fs22\par
+\pard\nowidctlpar\sa200\sl276\slmult1\b0\fs24 Ap\'f3s a an\'e1lise quantitativa dos resultados apresentados \'e9 poss\'edvel perceber que alguns algoritmos levam vantagem em detrimento a outros. O fato de que o problema do 8-puzzle gera uma \'e1rvore de estados com arestas de custo uniforme torna estrat\'e9gias que tem um foco maior no custo dos movimentos, em alguns momentos, menos interessantes.\par
+Inicialmente, \'e9 interessante distringuir os algoritmos que sempre encontram a solu\'e7\'e3o do problema e os nem sempre encontram, completos e n\'e3o completos. Os algoritmos Busca em largura, Busca de custo uniforme, Aprofundamento Iterativo e A*, por defini\'e7\'e3o s\'e3o completos. Em especial, Busca de custo uniforme \'e9 completo pois n\'e3o h\'e1 movimentos de custo \f1\lang1032\'e5\f0\lang1046  e A* \'e9 \'f3timo pois a heur\'edstica utilizada (n\'famero de pe\'e7as fora da posi\'e7\'e3o da solu\'e7\'e3o) \'e9 admiss\'edvel. Por outro lado, os algoritmos Hill Climbing e Busca gulosa nem sempre retornam a solu\'e7\'e3o, pois o Hill Climbing pode ficar preso em \'f3timos locais, n\'e3o alcan\'e7ando a solu\'e7\'e3o global \'f3tima, enquanto a Busca gulosa pode entrar em loop infinito.\par
+Outrossim, Busca em largura, Aprofundamento Iterativo, Busca de custo uniforme e A* s\'e3o \'f3timos, entregam a solu\'e7\'e3o de menor custo. Em especial, o A* \'e9 \'f3timo pois a heur\'edstica utilizada \'e9 admiss\'edvel. A partir disso, \'e9 poss\'edvel interpretar melhor os resultados obtidos. Visivelmente, o algoritmo de Aprofundamento iterativo, possui, por muito, o maior tempo de execu\'e7\'e3o, principalmente por, em toda itera\'e7\'e3o, checar estados que j\'e1 foram verificados em itera\'e7\'f5es anteriores, tornando o algoritmo pouco interessante. Por outro lado, os algoritmos Hill Climbing e Busca gulosa apesar de serem vantajosos na quest\'e3o de tempo de execu\'e7\'e3o e espa\'e7o utilizado, s\'e3o algoritmos que em v\'e1rios casos n\'e3o encontram a solu\'e7\'e3o do 8-puzzle, tornando-os pouco vi\'e1veis.\par
+\f2\fs22\lang22\par
 }
  
