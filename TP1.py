@@ -23,41 +23,35 @@ root, algorithm = getRootAndAlgorithm()
 solution = None
 
 if(algorithm == "B"):
-    inicio = time.time()
+    
     solution = Tree.bfs(root)
-    fim = time.time()
-    print(fim - inicio)
     print(solution.level[0])
+    
 elif(algorithm == "I"):
-    inicio = time.time()
+    
     solution = Tree.ids(root)
-    fim = time.time()
-    print(fim - inicio)
     print(solution.level[0])
+
 elif(algorithm == "U"):
-    inicio = time.time()
+    
     solution = Tree.dijkstra(root)
-    fim = time.time()
-    print(fim - inicio)
     print(solution.level[0])
+
 elif(algorithm == "A"):
-    inicio = time.time()
+    
     solution = Tree.AStar(root)
-    fim = time.time()
-    print(fim - inicio)
     print(solution.level[0])
+
 elif(algorithm == "G"):
-    inicio = time.time()
+    
     solution = Tree.greedyBestFirstSearch(root)
-    fim = time.time()
-    print(fim - inicio)
     print(solution.level[0])
+
 elif(algorithm == "H"):
-    inicio = time.time()
+    
     solution = Tree.hillClimbing(root)
-    fim = time.time()
-    print(fim - inicio)
     print(solution.level[0])
+
 else:
     raise ValueError("Algoritmo escolhido inválido")
   
