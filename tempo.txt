@@ -5,3 +5,58 @@ uniformCostSearch       41.684
 AStar                   
 greedyBestFirstSearch   
 hillClimbing            
+
+------------------------------
+
+Teste 1
+BFS
+Tempo = 0.0
+Solucao = 1
+
+IDS
+Tempo = 0.0
+Solucao = 1
+
+Uniform Cost
+Tempo = 0.0
+Solucao = 1
+
+A*
+Tempo = 0.0
+Solucao = 1
+
+Greedy Best First Search
+Tempo = 0.0
+Solucao = 1
+
+------------------------------
+
+Teste 2
+BFS
+Tempo = 0.011023998260498047
+Solucao = 5
+
+IDS
+Tempo = 0.05696558952331543
+Solucao = 5
+
+Uniform Cost
+Tempo = 1.1869981288909912
+Solucao = 5
+
+A*
+Tempo = 0.0
+Solucao = 5
+
+Greedy Best First Search
+Tempo = 0.0025451183319091797
+Solucao = 5
+
+------------------------------
+
+Teste 3
+BFS
+Tempo = 3.1750240325927734
+Solucao = 10
+
+IDS

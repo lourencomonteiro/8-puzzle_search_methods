@@ -222,10 +222,64 @@ def greedyBestFirstSearch(root):
 #     while(True):
 
 
-# initialState = [[1, 5, 2], [4, 8, 3], [7, 6, 0]]
-# root = Node(initialState, 0)
-# print(bfs(root))
-# print(dijkstra(root))
-# print(ids(root))
-# print(AStar(root))
-# print(greedyBestFirstSearch(root))
+# import time
+
+# teste0 = [[1, 2, 3], [4, 5, 6], [7, 0, 8]] # solução = 1
+# teste1 = [[1, 5, 2], [0, 4, 3], [7, 8, 6]] # solução = 5
+# teste2 = [[5, 8, 2], [1, 0, 3], [4, 7, 6]] # solução = 10
+# teste3 = [[8, 7, 0], [5, 4, 2], [1, 6, 3]] # solução = 20
+
+# testes = [teste0, teste1, teste2, teste3]
+
+# cont = 1
+# for i in testes:
+#     print("------------------------------")
+#     print("")
+#     print("Teste {}".format(cont))
+#     cont += 1
+#     root = Node(i)
+    
+#     print("BFS")
+#     inicio = time.time()
+#     solution = bfs(root)
+#     fim = time.time()
+#     print("Tempo = {}".format(fim - inicio))
+#     print("Solucao = {}".format(solution.level[0]))
+
+#     print("")
+
+#     print("IDS")
+#     inicio = time.time()
+#     solution = ids(root)
+#     fim = time.time()
+#     print("Tempo = {}".format(fim - inicio))
+#     print("Solucao = {}".format(solution.level[0]))
+
+#     print("")
+
+#     print("Uniform Cost")
+#     inicio = time.time()
+#     solution = dijkstra(root)
+#     fim = time.time()
+#     print("Tempo = {}".format(fim - inicio))
+#     print("Solucao = {}".format(solution.level[0]))
+
+#     print("")
+    
+#     print("A*")
+#     inicio = time.time()
+#     solution = AStar(root)
+#     fim = time.time()
+#     print("Tempo = {}".format(fim - inicio))
+#     print("Solucao = {}".format(solution.level[0]))
+
+#     print("")
+
+#     print("Greedy Best First Search")
+#     inicio = time.time()
+#     solution = greedyBestFirstSearch(root)
+#     fim = time.time()
+#     print("Tempo = {}".format(fim - inicio))
+#     print("Solucao = {}".format(solution.level[0]))
+
+#     print("")
