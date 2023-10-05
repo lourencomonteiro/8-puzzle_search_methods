@@ -1,6 +1,6 @@
 import copy
 import queue
-  
+
 class Node:
     def __init__(self, board, level = 0, parent = None, emptyPosition = None):
         self.board = board
@@ -19,14 +19,6 @@ class Node:
             self.parent.printPath()
         self.printBoard()
         print("")
-
-    def setEmptyPosition(self):
-        for i, sublist in enumerate(self.board):
-            if 0 in sublist:
-                j = sublist.index(0)
-                emptyPosition = [i, j]
-                break
-        self.emptyPosition = emptyPosition
 
     def setCost(self, cost):
         self.cost = cost
@@ -87,6 +79,14 @@ class Node:
         for move in moves:
             if(move):
                 self.children.append(move)
+
+def getEmptyPosition(board):
+    for i, sublist in enumerate(board):
+        if 0 in sublist:
+            j = sublist.index(0)
+            emptyPosition = [i, j]
+            break
+    return emptyPosition
 
 def bfs(root):
     notVisited = [root]
@@ -261,8 +261,8 @@ for algorithm in algorithms:
     cont = 0
     print("")
     for j in testes:
-        root = Node(j)
-        root.setEmptyPosition()
+        root = Node(j, 0, None, getEmptyPosition(j))
+        # root.setEmptyPosition()
         print("Teste {}".format(numTeste[cont]))
         cont += 1
         startTime = time.time()
