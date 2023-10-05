@@ -2,12 +2,13 @@ import copy
 import queue
   
 class Node:
-    def __init__(self, board, level = 0, parent = None):
+    def __init__(self, board, level = 0, parent = None, emptyPosition = None):
         self.board = board
         self.children = []
-        self.level = level,
+        self.level = level
         self.cost = 0
         self.parent = parent
+        self.emptyPosition = emptyPosition
     
     def printBoard(self):
         for i in range(3):
@@ -19,39 +20,40 @@ class Node:
         self.printBoard()
         print("")
 
-    def getEmptyPosition(self):
+    def setEmptyPosition(self):
         for i, sublist in enumerate(self.board):
             if 0 in sublist:
                 j = sublist.index(0)
                 emptyPosition = [i, j]
                 break
-        return emptyPosition
+        self.emptyPosition = emptyPosition
 
     def setCost(self, cost):
         self.cost = cost
     
     def movePieceUp(self):
-        emptyPosition = self.getEmptyPosition()
-        newBoard = Node(copy.deepcopy(self.board), self.level[0]+1, self)
+        emptyPosition = self.emptyPosition
+        newBoard = Node(copy.deepcopy(self.board), self.level+1, self, [emptyPosition[0] + 1, emptyPosition[1]])
         if(emptyPosition[0] == 2):
             return None
-        movedPiece = self.board[emptyPosition[0] +1][emptyPosition[1]]
+        movedPiece = self.board[emptyPosition[0] + 1][emptyPosition[1]]
         newBoard.board[emptyPosition[0]][emptyPosition[1]] = movedPiece
         newBoard.board[emptyPosition[0] + 1][emptyPosition[1]] = 0
         return newBoard
     
     def movePieceDown(self):
-        emptyPosition = self.getEmptyPosition().copy()
-        newBoard = Node(copy.deepcopy(self.board), self.level[0]+1, self)
+        emptyPosition = self.emptyPosition
+        newBoard = Node(copy.deepcopy(self.board), self.level+1, self, [emptyPosition[0] - 1, emptyPosition[1]])
         if(emptyPosition[0] == 0):
             return None
-        newBoard.board[emptyPosition[0]][emptyPosition[1]] = self.board[emptyPosition[0] -1][emptyPosition[1]]
-        newBoard.board[emptyPosition[0] -1][emptyPosition[1]] = 0
+        movedPiece = self.board[emptyPosition[0] - 1][emptyPosition[1]]
+        newBoard.board[emptyPosition[0]][emptyPosition[1]] = movedPiece
+        newBoard.board[emptyPosition[0] - 1][emptyPosition[1]] = 0
         return newBoard
     
     def movePieceLeft(self):
-        emptyPosition = self.getEmptyPosition()
-        newBoard = Node(copy.deepcopy(self.board), self.level[0]+1, self)
+        emptyPosition = self.emptyPosition
+        newBoard = Node(copy.deepcopy(self.board), self.level+1, self, [emptyPosition[0], emptyPosition[1] + 1])
         if(emptyPosition[1] == 2):
             return None
         newBoard.board[emptyPosition[0]][emptyPosition[1]] = self.board[emptyPosition[0]][emptyPosition[1] +1]
@@ -59,8 +61,8 @@ class Node:
         return newBoard
         
     def movePieceRight(self):
-        emptyPosition = self.getEmptyPosition()
-        newBoard = Node(copy.deepcopy(self.board), self.level[0]+1, self)
+        emptyPosition = self.emptyPosition
+        newBoard = Node(copy.deepcopy(self.board), self.level+1, self, [emptyPosition[0], emptyPosition[1] - 1])
         if(emptyPosition[1] == 0):
             return None
         newBoard.board[emptyPosition[0]][emptyPosition[1]] = self.board[emptyPosition[0]][emptyPosition[1] -1]
@@ -142,7 +144,7 @@ def dfs(root, depthLimit):
         if node.isSolution():
             solutionNode = node
             break
-        if node.level[0] < depthLimit:
+        if node.level < depthLimit:
             node.generateChildren()
             for child in node.children:
                 notVisitedStack.put(child)
@@ -260,10 +262,11 @@ for algorithm in algorithms:
     print("")
     for j in testes:
         root = Node(j)
+        root.setEmptyPosition()
         print("Teste {}".format(numTeste[cont]))
         cont += 1
         startTime = time.time()
-        print(algorithm(root).level[0])
+        print(algorithm(root).level)
         endTime = time.time()
         print("Tempo de execução: {}".format(endTime - startTime))
         print("")
